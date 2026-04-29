@@ -1,16 +1,100 @@
-# meteri12
+## buat project
 
-A new Flutter project.
+tentukan folder yang ingin di jadikan project \
+lalu klik kanan dan _"open with terminal"_ \
+lalu ketik perintah berikut
 
-## Getting Started
+```bash
+flutter create materi12
+```
 
-This project is a starting point for a Flutter application.
+ketik lagi
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+cd materi12
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ketik lagi
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub add convex_bottom_bar
+```
+
+ketik lagi
+
+```bash
+code .
+```
+
+---
+
+### Pergi ke folfer lib/main.dart
+
+Salin code dibawah ini dan paste kan di main.dart \
+_ctrl+a lalu ctrl+v_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BelajarNavBar(),
+    );
+  }
+}
+
+class BelajarNavBar extends StatefulWidget {
+  @override
+  _BelajarNavBarState createState() => _BelajarNavBarState();
+}
+
+class _BelajarNavBarState extends State<BelajarNavBar> {
+  int _selectedNavbar = 2;
+  void _changeSelectedNavBar(int index) {
+    setState(() {
+      _selectedNavbar = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("belajarFlutter.com")),
+      body: Center(
+        child: Text(
+          "Tab Index yang aktif : $_selectedNavbar",
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+      bottomNavigationBar: ConvexAppBar(
+        items: [
+          TabItem(icon: Icons.home, title: 'Home'),
+          TabItem(icon: Icons.map, title: 'Discovery'),
+          TabItem(icon: Icons.add, title: 'Add'),
+          TabItem(icon: Icons.message, title: 'Message'),
+          TabItem(icon: Icons.people, title: 'Profile'),
+        ],
+        initialActiveIndex: _selectedNavbar,
+        onTap: _changeSelectedNavBar,
+      ),
+    );
+  }
+}
+```
+
+lalu 
+```bash
+flutter run
+```
+ketik 2 untuk jalankan di chrome
+```bash
+2
+```
